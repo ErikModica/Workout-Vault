@@ -17,3 +17,44 @@ body {
   background-color: rgb(39, 35, 67);
   color: white;
 }
+
+/* HOME PAGE */
+
+.app-drawer {
+  padding: 1rem;
+}
+
+.bg-app-tile {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  transform: rotate(4deg);
+  background-color: rgb(186, 232, 232);
+  z-index: -1;
+  box-shadow: 1px 3px 3px rgba(1, 1, 1, 0.425);
+}
+
+.app-tile {
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 1px 3px 3px rgba(1, 1, 1, 0.425);
+}
+
+.app-tile > .tile-title {
+  text-align: center;
+  width: 100%;
+}
+
+.app-tile > .icon {
+  text-align: center;
+  width: 100%;
+}
+
+.app-tile > .icon > i {
+  font-size: 6em;
+}
