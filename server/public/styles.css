@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 12px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem;
+  font-size: 3em;
+  background-color: rgb(39, 35, 67);
+  color: white;
+}
