@@ -16,6 +16,13 @@ body {
   font-size: 3em;
   background-color: rgb(39, 35, 67);
   color: white;
+  letter-spacing: 1px;
+}
+
+.current-page {
+  padding: 0 1rem;
+  font-size: 2.5em;
+  background-color: rgb(227, 246, 245);
 }
 
 /* HOME PAGE */
@@ -57,4 +64,49 @@ body {
 
 .app-tile > .icon > i {
   font-size: 6em;
+}
+
+/* EXERCISES PAGE */
+
+.exercise-accordion {
+  background-color: rgb(39, 35, 67);
+  font-size: 3em;
+  margin: 1rem;
+}
+
+.muscle-group {
+  /* padding: 0.2rem 0; */
+  background-color: rgb(236, 236, 236);
+  border-bottom: 1px solid black;
+}
+
+.exercise {
+  border-top: 1px solid black;
+  background-color: rgb(186, 232, 232);
+}
+
+.exercise-details {
+  border-top: 1px solid black;
+  background-color: rgb(227, 246, 245);
+  font-size: 0.6em;
+  padding: 0.5rem;
+}
+
+.exercise-details > img {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+}
+
+.exercise-steps {
+  background-color: rgb(236, 236, 236);
+  padding-left: 1rem;
+}
+
+.exercise-steps > h2 {
+  margin: 0;
+}
+
+.exercise-steps > ol {
+  padding: 0.4rem 1rem;
 }

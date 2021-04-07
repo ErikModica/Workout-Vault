@@ -3,9 +3,11 @@ import React from 'react';
 export default function Home(props) {
   return (
     <>
-      <header className="navbar">
-        <i className="fas fa-home"></i>
-        <div>WORKOUT VAULT</div>
+      <header>
+        <div className="navbar">
+          <i className="fas fa-home"></i>
+          <div>WORKOUT VAULT</div>
+        </div>
       </header>
       <main>
         <div className="app-drawer">
