@@ -3,13 +3,7 @@ import React from 'react';
 export default function Exercises(props) {
   return (
     <>
-      <header>
-        <div className="navbar">
-          <i className="fas fa-home"></i>
-          <div>WORKOUT VAULT</div>
-        </div>
-        <div className="current-page">EXERCISES</div>
-      </header>
+      <div className="current-page">EXERCISES</div>
       <main>
         <div className="exercise-accordion">
           <div className="muscle-group">
