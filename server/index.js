@@ -18,6 +18,11 @@ app.get('/api/exercises-by-muscle/:muscleid', (req, res, next) => {
     .then(results => res.json(results));
 });
 
+app.get('/api/exercise-by-id/:exerciseid', (req, res, next) => {
+  getExerciseByID(req.params.exerciseid)
+    .then(results => res.json(results));
+});
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
@@ -40,10 +45,20 @@ function getExercisesByMuscle(muscleID) {
     .then(res => res.json())
     .then(data => {
       return data.results
+        .filter(exercise => exercise.description.length > 5)
         .map(exercise => {
-          const formatedExercise = { id: exercise.id, name: exercise.name, description: exercise.description };
-          return formatedExercise;
-        })
-        .filter(exercise => exercise.description.length > 5);
+          const formatedExercises = { id: exercise.id, name: exercise.name };
+          return formatedExercises;
+        });
+    });
+}
+
+function getExerciseByID(exerciseID) {
+  return nodeFetch(`https://wger.de/api/v2/exerciseinfo/${exerciseID}/`)
+    .then(res => res.json())
+    .then(data => {
+      const images = data.images.map(imageInfo => imageInfo.image);
+      const formatedExercise = { id: data.id, name: data.name, description: data.description, images };
+      return formatedExercise;
     });
 }
