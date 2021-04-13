@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 12px;
+  font-family: 'Oswald', sans-serif;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HEADER */
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem;
+  font-size: 3em;
+  background-color: rgb(39, 35, 67);
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* SUB-HEADER  */
+
+.current-page {
+  padding: 0 1rem;
+  font-size: 2.5em;
+  background-color: rgb(227, 246, 245);
+}
+
+/* HOME PAGE */
+
+.app-drawer {
+  padding: 1rem;
+}
+
+.bg-app-tile {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  transform: rotate(4deg);
+  background-color: rgb(186, 232, 232);
+  z-index: -1;
+  box-shadow: 1px 3px 3px rgba(1, 1, 1, 0.425);
+}
+
+.app-tile {
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 1px 3px 3px rgba(1, 1, 1, 0.425);
+}
+
+.app-tile > .tile-title {
+  text-align: center;
+  width: 100%;
+}
+
+.app-tile > .icon {
+  text-align: center;
+  width: 100%;
+}
+
+.app-tile > .icon > i {
+  font-size: 6em;
+}
+
+/* EXERCISES PAGE */
+
+.exercise-accordion-mobile {
+  background-color: rgb(39, 35, 67);
+  font-size: 2.5em;
+  margin: 1rem;
+}
+
+.muscle-group {
+  background-color: rgb(236, 236, 236);
+  border-bottom: 1px solid black;
+}
+
+.muscle-group > a {
+  padding-left: 0.5rem;
+}
+
+.exercise {
+  display: block;
+  border-top: 1px solid black;
+  background-color: rgb(186, 232, 232);
+  padding-left: 1rem;
+}
+
+.exercise-details {
+  border-top: 1px solid black;
+  background-color: rgb(227, 246, 245);
+  font-size: 0.6em;
+  padding: 0.5rem;
+}
+
+.exercise-details > img {
+  width: 50%;
+  max-width: 400px;
+  padding: 1rem;
+}
+
+.exercise-steps {
+  padding-left: 1rem;
+}
+
+.exercise-steps > h2 {
+  margin: 0;
+}
+
+/* DESKTOP V */
+
+.muscle-list-desktop {
+  font-size: 2.5em;
+  padding: 0.5rem;
+  padding-left: 1rem;
+}
+
+.exercise-app-container-desktop {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.exercise-tiles-container-desktop {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.exercise-tiles-container-desktop > .tile-container {
+  padding: 1rem;
+}
+
+.exercise-details-desktop {
+  background-color: rgb(236, 236, 236);
+  width: 90%;
+  padding: 2rem;
+}
+
+.exercise-info-group-desktop {
+  padding: 1rem;
+}
+
+.exercise-info-group-desktop > img {
+  max-height: 300px;
+}
+
+.exercise-info-group-desktop > .exercise-steps {
+  width: 90%;
+}
+
+@media only screen and (max-width: 576px) {
+  .muscle-list-desktop {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .exercise-accordion-mobile {
+    display: none;
+  }
+}
