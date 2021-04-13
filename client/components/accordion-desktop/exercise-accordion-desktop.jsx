@@ -34,7 +34,7 @@ export default class ExerciseAccordion extends React.Component {
               <div className='bg-app-tile'></div>
               <div className="app-tile">
               <div className="tile-title" exerciseid={exercise.id}>
-                  <h4>{exercise.name}</h4>
+                  <h5>{exercise.name}</h5>
                 </div>
               </div>
             </a>
