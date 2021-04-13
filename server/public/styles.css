@@ -166,10 +166,18 @@ a {
   .muscle-list-desktop {
     display: none;
   }
+
+  .saved-exercise-list-desktop {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 576px) {
   .exercise-accordion-mobile {
+    display: none;
+  }
+
+  .saved-exercise-list-mobile {
     display: none;
   }
 }
