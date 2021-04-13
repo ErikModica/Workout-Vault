@@ -38,6 +38,10 @@ a {
 /* HOME PAGE */
 
 .app-drawer {
+  display: flex;
+}
+
+.tile-container {
   padding: 1rem;
 }
 
@@ -138,10 +142,6 @@ a {
 .exercise-tiles-container-desktop {
   display: flex;
   flex-wrap: wrap;
-}
-
-.exercise-tiles-container-desktop > .tile-container {
-  padding: 1rem;
 }
 
 .exercise-details-desktop {
