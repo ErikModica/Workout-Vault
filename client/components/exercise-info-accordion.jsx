@@ -1,9 +1,11 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 
 export default class ExerciseInfoAccordion extends React.Component {
   constructor(props) {
     super(props);
     this.state = { exerciseInfo: {} };
+    this.createMarkup = this.createMarkup.bind(this);
   }
 
   componentDidMount() {
@@ -13,6 +15,16 @@ export default class ExerciseInfoAccordion extends React.Component {
       .then(exerciseInfo => {
         this.setState({ exerciseInfo });
       });
+  }
+
+  createMarkup(html) {
+    if (html && html[0] !== '<') {
+      const pStartTag = '<p>';
+      const pEndTag = '</p>';
+      html = pStartTag + html + pEndTag;
+    }
+    html = DOMPurify.sanitize(html);
+    return { __html: html };
   }
 
   render() {
@@ -27,7 +39,7 @@ export default class ExerciseInfoAccordion extends React.Component {
         <img src={images[1]}></img>
         <div className="exercise-steps">
           <h2>STEPS</h2>
-          <p>{description}</p>
+          <p dangerouslySetInnerHTML={this.createMarkup(description)}></p>
         </div>
       </div>
     );

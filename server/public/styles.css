@@ -80,7 +80,7 @@ a {
 
 .exercise-accordion-mobile {
   background-color: rgb(39, 35, 67);
-  font-size: 3em;
+  font-size: 2.5em;
   margin: 1rem;
 }
 
@@ -89,9 +89,15 @@ a {
   border-bottom: 1px solid black;
 }
 
+.muscle-group > a {
+  padding-left: 0.5rem;
+}
+
 .exercise {
+  display: block;
   border-top: 1px solid black;
   background-color: rgb(186, 232, 232);
+  padding-left: 1rem;
 }
 
 .exercise-details {
@@ -120,6 +126,7 @@ a {
 .muscle-list-desktop {
   font-size: 2.5em;
   padding: 0.5rem;
+  padding-left: 1rem;
 }
 
 .exercise-app-container-desktop {
@@ -143,9 +150,16 @@ a {
   padding: 2rem;
 }
 
-.exercise-details-desktop > img {
-  width: 50%;
-  max-width: 350px;
+.exercise-info-group-desktop {
+  padding: 1rem;
+}
+
+.exercise-info-group-desktop > img {
+  max-height: 300px;
+}
+
+.exercise-info-group-desktop > .exercise-steps {
+  width: 90%;
 }
 
 @media only screen and (max-width: 576px) {

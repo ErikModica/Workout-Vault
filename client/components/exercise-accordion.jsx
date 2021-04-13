@@ -28,9 +28,11 @@ export default class ExerciseAccordion extends React.Component {
     return (
       <>
         {this.state.exercises.map(exercise => (
-          <div onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id} className="exercise">
-            {exercise.name}
-            {this.state.currentExerciseID === exercise.id ? <ExerciseInfoAccordion exerciseid={exercise.id} /> : '' }
+          <div key={exercise.id}>
+            <a onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id} className="exercise">
+              {exercise.name}
+            </a>
+            { this.state.currentExerciseID === exercise.id ? <ExerciseInfoAccordion exerciseid={exercise.id} /> : '' }
           </div>
         ))
         }
