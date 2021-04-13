@@ -1,7 +1,7 @@
 import React from 'react';
-import ExerciseAccordion from './exercise-accordion';
+import ExerciseAccordion from './exercise-accordion-desktop';
 
-export default class MuscleAccordion extends React.Component {
+export default class MuscleAccordionDesktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = { muscles: [], currentMuscleID: null };
@@ -27,14 +27,18 @@ export default class MuscleAccordion extends React.Component {
 
   render() {
     return (
-      <div className="exercise-accordion-mobile">
+      <div className="muscle-list-desktop">
+        <div>
         {this.state.muscles.map(muscle => (
-          <div key={muscle.id} className="muscle-group">
-            <a onClick={this.decipherMuscleID} muscleid={muscle.id}>{muscle.name}</a>
-            {this.state.currentMuscleID === muscle.id ? <ExerciseAccordion muscleID={this.state.currentMuscleID}/> : ''}
+          <div key={muscle.id}>
+            <a onClick={this.decipherMuscleID} key={muscle.id} muscleid={muscle.id}>{muscle.name}</a>
+            <div className="exercise-tiles-container-desktop">
+              {this.state.currentMuscleID === muscle.id ? <ExerciseAccordion muscleID={this.state.currentMuscleID} /> : ''}
+            </div>
           </div>
         ))
         }
+        </div>
       </div>
     );
   }
