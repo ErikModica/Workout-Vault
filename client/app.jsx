@@ -25,6 +25,8 @@ export default class App extends React.Component {
     const { route } = this.state;
     if (route.path === 'exercises') {
       return <Exercises />;
+    } else if (route.path === 'saved-exercises') {
+      return <SavedExercises />;
     }
     return <Home />;
   }
@@ -34,8 +36,7 @@ export default class App extends React.Component {
     return (
     <>
      <Header />
-     {/* { this.renderPage() } */}
-     <SavedExercises />
+     { this.renderPage() }
     </>
     );
   }

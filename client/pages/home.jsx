@@ -16,7 +16,7 @@ export default function Home(props) {
               </div>
             </div>
           </a>
-          <a href="#exercises" className="tile-container">
+          <a href="#saved-exercises" className="tile-container">
             <div className="bg-app-tile"></div>
             <div className="app-tile">
               <div className="tile-title">
