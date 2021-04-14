@@ -5,9 +5,10 @@ import ExerciseInfoAccordion from './exercise-info-accordion-desktop';
 export default class ExerciseAccordion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { exercises: [], currentExerciseID: null };
+    this.state = { exercises: [], currentExerciseID: null, savedIds: {} };
     this.decipherExerciseID = this.decipherExerciseID.bind(this);
     this.saveExercise = this.saveExercise.bind(this);
+    this.checkSavedIcons = this.checkSavedIcons.bind(this);
   }
 
   componentDidMount() {
@@ -15,6 +16,7 @@ export default class ExerciseAccordion extends React.Component {
     fetch(`/api/exercises-by-muscle/${muscleID}`)
       .then(result => result.json())
       .then(exercises => this.setState({ exercises }));
+    this.checkSavedIcons();
   }
 
   decipherExerciseID(event) {
@@ -33,13 +35,21 @@ export default class ExerciseAccordion extends React.Component {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-      }).catch(err => console.error(err));
+      })
+      .catch(err => console.error(err));
+    // this.checkSavedIcons();
   }
 
-  // you deleted the database you fuckin idiot.  fix it when you awaken
+  checkSavedIcons() {
+    fetch('/api/saved-exercises')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ savedIds: data });
+      })
+      .catch(err => console.error(err));
+  }
 
   render() {
-    console.log(this.state.currentExerciseID);
     return (
       <>
         {this.state.currentExerciseID
@@ -48,7 +58,7 @@ export default class ExerciseAccordion extends React.Component {
             <a className='tile-container' onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id}>
               <div className='bg-app-tile'></div>
               <div className="app-tile">
-                <i exerciseid={exercise.id} onClick={this.saveExercise} className="far fa-bookmark unsaved-icon"></i>
+                <i exerciseid={exercise.id} onClick={this.saveExercise} className={!this.state.savedIds[exercise.id] ? 'far fa-bookmark unsaved-icon' : 'fas fa-bookmark unsaved-icon'}></i>
                 <div className="tile-title" exerciseid={exercise.id}>
                   <h5>{exercise.name}</h5>
                 </div>

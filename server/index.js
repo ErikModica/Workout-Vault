@@ -35,7 +35,6 @@ app.get('/api/exercise-by-id/:exerciseid', (req, res, next) => {
 });
 
 app.post('/api/saved-exercises', (req, res, next) => {
-  console.log(req.body);
   const { userId, exerciseId, username } = req.body;
   if (!userId || !exerciseId || !username) {
     // throw new ClientError(400, 'userId and exerciseId are required fields');
@@ -56,6 +55,26 @@ app.post('/api/saved-exercises', (req, res, next) => {
       console.error(err);
       // throw new ClientError(500, 'an unexpected error occured.');
       res.status(500).json({ error: 'an unexpected error occured.' });
+    });
+});
+
+app.get('/api/saved-exercises', (req, res, next) => {
+  const sql = `
+              select "exerciseId"
+              from "saved-exercises";
+              `;
+  db.query(sql)
+    .then(result => {
+      const formattedIdObject = {};
+      for (let i = 0; i < result.rows.length; i++) {
+        formattedIdObject[result.rows[i].exerciseId] = true;
+      }
+      console.log(formattedIdObject);
+      res.status(200).json(formattedIdObject);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'an unexpected error occured' });
     });
 });
 
