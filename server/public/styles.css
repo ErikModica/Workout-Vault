@@ -98,10 +98,17 @@ a {
 }
 
 .exercise {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   border-top: 1px solid black;
   background-color: rgb(186, 232, 232);
   padding-left: 1rem;
+}
+
+.exercise > .unsaved-icon {
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .exercise-details {
@@ -142,6 +149,16 @@ a {
 .exercise-tiles-container-desktop {
   display: flex;
   flex-wrap: wrap;
+}
+
+.exercise-tiles-container-desktop > .tile-container > .app-tile {
+  position: relative;
+}
+
+.exercise-tiles-container-desktop > .tile-container > .app-tile > .unsaved-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .exercise-details-desktop {

@@ -31,6 +31,7 @@ export default class ExerciseAccordion extends React.Component {
           <div key={exercise.id}>
             <a onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id} className="exercise">
               {exercise.name}
+              <i className="far fa-bookmark unsaved-icon"></i>
             </a>
             { this.state.currentExerciseID === exercise.id ? <ExerciseInfoAccordion exerciseid={exercise.id} /> : '' }
           </div>

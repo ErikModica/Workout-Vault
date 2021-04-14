@@ -33,7 +33,8 @@ export default class ExerciseAccordion extends React.Component {
             <a className='tile-container' onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id}>
               <div className='bg-app-tile'></div>
               <div className="app-tile">
-              <div className="tile-title" exerciseid={exercise.id}>
+                <i className="far fa-bookmark unsaved-icon"></i>
+                <div className="tile-title" exerciseid={exercise.id}>
                   <h5>{exercise.name}</h5>
                 </div>
               </div>
