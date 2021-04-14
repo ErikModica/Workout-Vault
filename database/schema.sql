@@ -16,9 +16,8 @@ create table "public"."users" (
 );
 
 create table "public"."saved-exercises" (
-  "userId"         serial,
+  "userId"         int            not null,
   "username"       text           not null,
   "exerciseId"     int            not null,
-  primary key ("userId"),
-  unique ("username")
+  primary key ("exerciseId")
 );

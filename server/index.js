@@ -35,6 +35,7 @@ app.get('/api/exercise-by-id/:exerciseid', (req, res, next) => {
 });
 
 app.post('/api/saved-exercises', (req, res, next) => {
+  console.log(req.body);
   const { userId, exerciseId, username } = req.body;
   if (!userId || !exerciseId || !username) {
     // throw new ClientError(400, 'userId and exerciseId are required fields');
