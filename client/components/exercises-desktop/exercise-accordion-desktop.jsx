@@ -8,7 +8,6 @@ export default class ExerciseAccordion extends React.Component {
     this.state = { exercises: [], currentExerciseID: null, savedIds: {} };
     this.decipherExerciseID = this.decipherExerciseID.bind(this);
     this.saveExercise = this.saveExercise.bind(this);
-    this.checkSavedIcons = this.checkSavedIcons.bind(this);
   }
 
   componentDidMount() {
@@ -30,14 +29,13 @@ export default class ExerciseAccordion extends React.Component {
 
   saveExercise(event) {
     const exerciseId = parseInt(event.target.getAttribute('exerciseid'));
-    const body = { userId: 1, exerciseId, username: 'GIGACHAD' };
+    const body = { userId: 1, exerciseId, username: 'GIGACHAD', muscleId: this.props.muscleID, muscleName: this.props.muscleName };
     fetch('/api/saved-exercises', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
       })
       .catch(err => console.error(err));
-    // this.checkSavedIcons();
+    this.checkSavedIcons();
   }
 
   checkSavedIcons() {
@@ -55,12 +53,14 @@ export default class ExerciseAccordion extends React.Component {
         {this.state.currentExerciseID
           ? <ExerciseInfoAccordion exerciseid={this.state.currentExerciseID} />
           : this.state.exercises.map(exercise => (
-            <a className='tile-container' onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id}>
+            <a className='tile-container' key={exercise.id}>
               <div className='bg-app-tile'></div>
               <div className="app-tile">
-                <i exerciseid={exercise.id} onClick={this.saveExercise} className={!this.state.savedIds[exercise.id] ? 'far fa-bookmark unsaved-icon' : 'fas fa-bookmark unsaved-icon'}></i>
+               <i exerciseid={exercise.id} onClick={this.saveExercise}
+               className={!this.state.savedIds[this.props.muscleName].includes(exercise.id) ? 'far fa-bookmark unsaved-icon' : 'fas fa-bookmark unsaved-icon'}>
+              </i>
                 <div className="tile-title" exerciseid={exercise.id}>
-                  <h5>{exercise.name}</h5>
+                  <h5 onClick={this.decipherExerciseID} exerciseid={exercise.id}>{exercise.name}</h5>
                 </div>
               </div>
             </a>

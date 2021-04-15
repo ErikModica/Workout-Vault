@@ -31,7 +31,7 @@ export default class MuscleAccordion extends React.Component {
         {this.state.muscles.map(muscle => (
           <div key={muscle.id} className="muscle-group">
             <a onClick={this.decipherMuscleID} muscleid={muscle.id}>{muscle.name}</a>
-            {this.state.currentMuscleID === muscle.id ? <ExerciseAccordion muscleID={this.state.currentMuscleID}/> : ''}
+            {this.state.currentMuscleID === muscle.id ? <ExerciseAccordion muscleName={muscle.name} muscleID={this.state.currentMuscleID}/> : ''}
           </div>
         ))
         }
