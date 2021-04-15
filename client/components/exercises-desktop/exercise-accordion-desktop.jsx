@@ -30,7 +30,7 @@ export default class ExerciseAccordion extends React.Component {
   saveExercise(event) {
     const exerciseId = parseInt(event.target.getAttribute('exerciseid'));
     const exerciseName = event.target.getAttribute('exercisename');
-    const body = { userId: 1, exerciseId, exerciseName, username: 'GIGACHAD', muscleId: this.props.muscleID, muscleName: this.props.muscleName };
+    const body = { userId: 1, exerciseId, exerciseName, muscleId: this.props.muscleID, muscleName: this.props.muscleName };
     fetch('/api/saved-exercises', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(res => res.json())
       .then(() => this.checkSavedIcons())
