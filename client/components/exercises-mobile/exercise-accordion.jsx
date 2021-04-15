@@ -4,7 +4,7 @@ import ExerciseInfoAccordion from './exercise-info-accordion';
 export default class ExerciseAccordion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { exercises: [], currentExerciseID: null, savedIds: {} };
+    this.state = { exercises: [], currentExerciseID: null, savedIds: [] };
     this.decipherExerciseID = this.decipherExerciseID.bind(this);
     this.saveExercise = this.saveExercise.bind(this);
   }
@@ -14,7 +14,7 @@ export default class ExerciseAccordion extends React.Component {
     fetch(`/api/exercises-by-muscle/${muscleID}`)
       .then(result => result.json())
       .then(exercises => this.setState({ exercises }))
-      .then(this.checkSavedIcons());
+      .then(() => this.checkSavedIcons());
   }
 
   decipherExerciseID(event) {
@@ -28,10 +28,11 @@ export default class ExerciseAccordion extends React.Component {
 
   saveExercise(event) {
     const exerciseId = parseInt(event.target.getAttribute('exerciseid'));
-    const body = { userId: 1, exerciseId, username: 'GIGACHAD', muscleId: this.props.muscleID, muscleName: this.props.muscleName };
+    const exerciseName = event.target.getAttribute('exercisename');
+    const body = { userId: 1, exerciseId, exerciseName, username: 'GIGACHAD', muscleId: this.props.muscleID, muscleName: this.props.muscleName };
     fetch('/api/saved-exercises', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(res => res.json())
-      .then(this.checkSavedIcons())
+      .then(() => this.checkSavedIcons())
       .catch(err => console.error(err));
   }
 
@@ -51,8 +52,8 @@ export default class ExerciseAccordion extends React.Component {
           <div key={exercise.id}>
             <a key={exercise.id} className="exercise">
               <div onClick={this.decipherExerciseID} exerciseid={exercise.id}>{exercise.name}</div>
-              <i exerciseid={exercise.id} onClick={this.saveExercise}
-                className={!this.state.savedIds[this.props.muscleName].includes(exercise.id) ? 'far fa-bookmark unsaved-icon' : 'fas fa-bookmark unsaved-icon'}>
+              <i exerciseid={exercise.id} exercisename={exercise.name} onClick={this.saveExercise}
+                className={!this.state.savedIds.some(exerciseInfoObj => exerciseInfoObj.exerciseId === exercise.id) ? 'far fa-bookmark unsaved-icon' : 'fas fa-bookmark unsaved-icon'}>
               </i>
             </a>
             { this.state.currentExerciseID === exercise.id ? <ExerciseInfoAccordion exerciseid={exercise.id} /> : '' }

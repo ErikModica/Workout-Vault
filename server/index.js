@@ -36,16 +36,16 @@ app.get('/api/exercise-by-id/:exerciseid', (req, res, next) => {
 });
 
 app.post('/api/saved-exercises', (req, res, next) => {
-  const { userId, exerciseId, username, muscleId, muscleName } = req.body;
-  if (!userId || !exerciseId || !username || !muscleId || !muscleName) {
+  const { userId, exerciseId, exerciseName, username, muscleId, muscleName } = req.body;
+  if (!userId || !exerciseId || !exerciseName || !username || !muscleId || !muscleName) {
     throw new ClientError(400, 'enter all required fields');
   }
   const sql = `
-              insert into "saved-exercises" ("userId", "exerciseId", "username", "muscleId", "muscleName")
-              values ($1, $2, $3, $4, $5)
+              insert into "saved-exercises" ("userId", "exerciseId", "exerciseName", "username", "muscleId", "muscleName")
+              values ($1, $2, $3, $4, $5, $6)
               returning *
               `;
-  const values = [userId, exerciseId, username, muscleId, muscleName];
+  const values = [userId, exerciseId, exerciseName, username, muscleId, muscleName];
 
   db.query(sql, values)
     .then(result => {
@@ -56,20 +56,12 @@ app.post('/api/saved-exercises', (req, res, next) => {
 
 app.get('/api/saved-exercises', (req, res, next) => {
   const sql = `
-              select "exerciseId", "muscleId", "muscleName"
+              select "exerciseId", "exerciseName", "muscleId", "muscleName"
               from "saved-exercises";
               `;
   db.query(sql)
     .then(result => {
-      const muscleList = ['Anterior deltoid', 'Biceps brachii', 'Biceps femoris', 'Brachialis', 'Gastrocnemius', 'Gluteus maximus', 'Latissimus dorsi', 'Obliquus externus abdominis', 'Pectoralis major', 'Quadriceps femoris', 'Rectus abdominis', 'Serratus anterior', 'Soleus', 'Trapeziusz', 'Triceps brachii'];
-      const formattedMuscleObject = {};
-      for (let i = 0; i < muscleList.length; i++) {
-        formattedMuscleObject[muscleList[i]] = [];
-      }
-      for (let i = 0; i < result.rows.length; i++) {
-        formattedMuscleObject[result.rows[i].muscleName].push(result.rows[i].exerciseId);
-      }
-      res.status(200).json(formattedMuscleObject);
+      res.status(200).json(result.rows);
     })
     .catch(err => console.error(err));
 });

@@ -19,6 +19,7 @@ create table "public"."saved-exercises" (
   "userId"         int            not null,
   "username"       text           not null,
   "exerciseId"     int            not null,
+  "exerciseName"   text           not null,
   "muscleId"       int            not null,
   "muscleName"     text           not null,
   primary key ("exerciseId")
