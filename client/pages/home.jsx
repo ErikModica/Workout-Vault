@@ -16,6 +16,17 @@ export default function Home(props) {
               </div>
             </div>
           </a>
+          <a href="#saved-exercises" className="tile-container">
+            <div className="bg-app-tile"></div>
+            <div className="app-tile">
+              <div className="tile-title">
+                <h2>SAVED EXERCISES</h2>
+              </div>
+              <div className="icon">
+                <i className="fas fa-search"></i>
+              </div>
+            </div>
+          </a>
         </div>
       </main>
     </>

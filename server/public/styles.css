@@ -38,6 +38,10 @@ a {
 /* HOME PAGE */
 
 .app-drawer {
+  display: flex;
+}
+
+.tile-container {
   padding: 1rem;
 }
 
@@ -94,10 +98,17 @@ a {
 }
 
 .exercise {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   border-top: 1px solid black;
   background-color: rgb(186, 232, 232);
   padding-left: 1rem;
+}
+
+.exercise > .unsaved-icon {
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .exercise-details {
@@ -140,8 +151,14 @@ a {
   flex-wrap: wrap;
 }
 
-.exercise-tiles-container-desktop > .tile-container {
-  padding: 1rem;
+.exercise-tiles-container-desktop > .tile-container > .app-tile {
+  position: relative;
+}
+
+.exercise-tiles-container-desktop > .tile-container > .app-tile > .unsaved-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .exercise-details-desktop {
@@ -166,10 +183,18 @@ a {
   .muscle-list-desktop {
     display: none;
   }
+
+  .saved-exercise-list-desktop {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 576px) {
   .exercise-accordion-mobile {
+    display: none;
+  }
+
+  .saved-exercise-list-mobile {
     display: none;
   }
 }

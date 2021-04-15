@@ -33,7 +33,7 @@ export default class MuscleAccordionDesktop extends React.Component {
           <div key={muscle.id}>
             <a onClick={this.decipherMuscleID} key={muscle.id} muscleid={muscle.id}>{muscle.name}</a>
             <div className="exercise-tiles-container-desktop">
-              {this.state.currentMuscleID === muscle.id ? <ExerciseAccordion muscleID={this.state.currentMuscleID} /> : ''}
+              {this.state.currentMuscleID === muscle.id ? <ExerciseAccordion muscleName={muscle.name} muscleID={this.state.currentMuscleID} /> : ''}
             </div>
           </div>
         ))

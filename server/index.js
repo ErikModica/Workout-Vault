@@ -2,10 +2,22 @@ require('dotenv/config');
 const nodeFetch = require('node-fetch');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
+const ClientError = require('./client-error');
+const errorMiddleware = require('./error-middleware');
+const pg = require('pg');
 
 const app = express();
 
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
 app.use(staticMiddleware);
+
+app.use(express.json());
 
 app.get('/api/muscles', (req, res, next) => {
   getMuscles()
@@ -22,6 +34,39 @@ app.get('/api/exercise-by-id/:exerciseid', (req, res, next) => {
   getExerciseByID(req.params.exerciseid)
     .then(results => res.json(results));
 });
+
+app.post('/api/saved-exercises', (req, res, next) => {
+  const { userId, exerciseId, exerciseName, muscleId, muscleName } = req.body;
+  if (!userId || !exerciseId || !exerciseName || !muscleId || !muscleName) {
+    throw new ClientError(400, 'enter all required fields');
+  }
+  const sql = `
+              insert into "saved-exercises" ("userId", "exerciseId", "exerciseName", "muscleId", "muscleName")
+              values ($1, $2, $3, $4, $5)
+              returning *
+              `;
+  const values = [userId, exerciseId, exerciseName, muscleId, muscleName];
+
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json(result.rows[0]);
+    })
+    .catch(err => console.error(err));
+});
+
+app.get('/api/saved-exercises', (req, res, next) => {
+  const sql = `
+              select "exerciseId", "exerciseName", "muscleId", "muscleName"
+              from "saved-exercises";
+              `;
+  db.query(sql)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => console.error(err));
+});
+
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console

@@ -4,8 +4,9 @@ import ExerciseInfoAccordion from './exercise-info-accordion';
 export default class ExerciseAccordion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { exercises: [], currentExerciseID: null };
+    this.state = { exercises: [], currentExerciseID: null, savedIds: {} };
     this.decipherExerciseID = this.decipherExerciseID.bind(this);
+    this.saveExercise = this.saveExercise.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +33,7 @@ export default class ExerciseAccordion extends React.Component {
             <a onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id} className="exercise">
               {exercise.name}
             </a>
-            { this.state.currentExerciseID === exercise.id ? <ExerciseInfoAccordion exerciseid={exercise.id} /> : '' }
+            { this.state.currentExerciseID === exercise.id ? <ExerciseInfoAccordion exerciseid={exercise.id} /> : ''}
           </div>
         ))
         }
