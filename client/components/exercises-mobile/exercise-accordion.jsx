@@ -13,8 +13,8 @@ export default class ExerciseAccordion extends React.Component {
     const muscleID = this.props.muscleID;
     fetch(`/api/exercises-by-muscle/${muscleID}`)
       .then(result => result.json())
-      .then(exercises => this.setState({ exercises }));
-    this.checkSavedIcons();
+      .then(exercises => this.setState({ exercises }))
+      .then(this.checkSavedIcons());
   }
 
   decipherExerciseID(event) {
@@ -31,10 +31,8 @@ export default class ExerciseAccordion extends React.Component {
     const body = { userId: 1, exerciseId, username: 'GIGACHAD', muscleId: this.props.muscleID, muscleName: this.props.muscleName };
     fetch('/api/saved-exercises', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(res => res.json())
-      .then(data => {
-      })
+      .then(this.checkSavedIcons())
       .catch(err => console.error(err));
-    this.checkSavedIcons();
   }
 
   checkSavedIcons() {

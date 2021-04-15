@@ -15,7 +15,6 @@ export default class SavedExercisesMobile extends React.Component {
             delete data[key];
           }
         }
-        // console.log(data);
         this.setState({ savedExercises: data });
         this.renderSavedMuscles();
       });
@@ -39,7 +38,6 @@ export default class SavedExercisesMobile extends React.Component {
         </div>
       );
     }
-    // console.log('yoyoyi', savedMuscleList);
     this.setState({ formattedExercises: savedMuscleList });
   }
 
@@ -50,13 +48,5 @@ export default class SavedExercisesMobile extends React.Component {
       </div>
     );
   }
-
-  // render() {
-  //   return (
-  //     <div className="saved-exercise-list-mobile">
-  //       <h1>Ni Hao Ma(Mobile)</h1>
-  //     </div>
-  //   );
-  // }
 
 }
