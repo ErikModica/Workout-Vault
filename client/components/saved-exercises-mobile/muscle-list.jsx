@@ -1,50 +1,40 @@
 import React from 'react';
+import ExerciseList from './exercise-list';
 
 export default class SavedExercisesMobile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { savedExercises: {}, formattedExercises: [] };
+    this.state = { savedMuscles: [], currentMuscleName: null };
+    this.showExercises = this.showExercises.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/saved-exercises')
+    fetch('/api/saved-exercises/muscles')
       .then(res => res.json())
       .then(data => {
-        for (const key in data) {
-          if (data[key].length === 0) {
-            delete data[key];
-          }
-        }
-        this.setState({ savedExercises: data });
-        this.renderSavedMuscles();
+        this.setState({ savedMuscles: data });
       });
   }
 
-  decipherExerciseID(event) {
-    const exerciseID = parseInt(event.target.getAttribute('exerciseid'));
-    if (exerciseID === this.state.currentExerciseID) {
-      this.setState({ currentExerciseID: null });
+  showExercises(event) {
+    const muscleName = event.target.getAttribute('musclename');
+    if (muscleName === this.state.currentMuscleName) {
+      this.setState({ currentMuscleName: null });
     } else {
-      this.setState({ currentExerciseID: exerciseID });
+      this.setState({ currentMuscleName: muscleName });
     }
-  }
-
-  renderSavedMuscles() {
-    const savedMuscleList = [];
-    for (const key in this.state.savedExercises) {
-      savedMuscleList.push(
-        <div key={key} className="muscle-group">
-          <a onClick={this.decipherMuscleID}>{key}</a>
-        </div>
-      );
-    }
-    this.setState({ formattedExercises: savedMuscleList });
   }
 
   render() {
     return (
       <div className="exercise-accordion-mobile">
-        {this.state.formattedExercises}
+        {this.state.savedMuscles.map(muscle => (
+          <div key={muscle} className="muscle-group">
+            <a onClick={this.showExercises} musclename={muscle}>{muscle}</a>
+            {this.state.currentMuscleName === muscle ? <ExerciseList musclename={muscle} /> : ''}
+          </div>
+        ))
+        }
       </div>
     );
   }

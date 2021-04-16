@@ -27,14 +27,18 @@ export default class MuscleList extends React.Component {
   render() {
     return (
       <>
-        {this.state.savedExercises.map(exercise => (
-          <div key={exercise.exerciseId}>
-            <a key={exercise.exerciseId} className="exercise">
-              <div onClick={this.showExerciseInfo} exerciseid={exercise.exerciseId}>{exercise.exerciseName}</div>
+        {this.state.currentExerciseID
+          ? <ExerciseInfo exerciseid={this.state.currentExerciseID} />
+          : this.state.savedExercises.map(exercise => (
+            <a className='tile-container' key={exercise.exerciseId}>
+              <div className='bg-app-tile'></div>
+              <div className="app-tile">
+                <div className="tile-title" exerciseid={exercise.exerciseId}>
+                  <h5 onClick={this.showExerciseInfo} exerciseid={exercise.exerciseId}>{exercise.exerciseName}</h5>
+                </div>
+              </div>
             </a>
-            { this.state.currentExerciseID === exercise.exerciseId ? <ExerciseInfo exerciseid={exercise.exerciseId} /> : ''}
-          </div>
-        ))
+          ))
         }
       </>
     );
