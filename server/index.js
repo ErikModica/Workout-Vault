@@ -1,6 +1,7 @@
 require('dotenv/config');
 const nodeFetch = require('node-fetch');
 const express = require('express');
+const path = require('path');
 const staticMiddleware = require('./static-middleware');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
@@ -66,6 +67,7 @@ app.get('/api/saved-exercises', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+
 app.get('/api/saved-exercises/muscles', (req, res, next) => {
   const sql = `
               select distinct "muscleName"
@@ -90,6 +92,12 @@ app.get('/api/saved-exercises/:muscleName', (req, res, next) => {
       res.status(200).json(result.rows);
     })
     .catch(err => console.error(err));
+
+app.use((req, res) => {
+  res.sendFile('/index.html', {
+    root: path.join(__dirname, 'public')
+  });
+
 });
 
 app.use(errorMiddleware);
