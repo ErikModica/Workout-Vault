@@ -80,9 +80,6 @@ app.get('/api/saved-exercises/muscles', (req, res, next) => {
 });
 
 app.get('/api/saved-exercises/:muscleName', (req, res, next) => {
-  if (!req.params.muscleName) {
-    throw new ClientError(400, 'enter all required fields');
-  }
   const sql = `
               select "exerciseId", "exerciseName"
               from "saved-exercises"

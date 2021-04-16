@@ -1,11 +1,10 @@
 import React from 'react';
-import DOMPurify from 'dompurify';
+import createMarkup from '../../lib/create-markup';
 
 export default class ExerciseInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { exerciseInfo: {} };
-    this.createMarkup = this.createMarkup.bind(this);
   }
 
   componentDidMount() {
@@ -15,16 +14,6 @@ export default class ExerciseInfo extends React.Component {
       .then(exerciseInfo => {
         this.setState({ exerciseInfo });
       });
-  }
-
-  createMarkup(html) {
-    if (html && html[0] !== '<') {
-      const pStartTag = '<p>';
-      const pEndTag = '</p>';
-      html = pStartTag + html + pEndTag;
-    }
-    html = DOMPurify.sanitize(html);
-    return { __html: html };
   }
 
   render() {
@@ -41,7 +30,7 @@ export default class ExerciseInfo extends React.Component {
           <img src={images[1]}></img>
           <div className="exercise-steps">
             <h3>STEPS</h3>
-            <p dangerouslySetInnerHTML={this.createMarkup(description)}></p>
+            <p dangerouslySetInnerHTML={createMarkup(description)}></p>
           </div>
         </div>
       </div>
