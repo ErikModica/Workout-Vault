@@ -1,22 +1,21 @@
 import React from 'react';
-import ExerciseInfoAccordion from './exercise-info-accordion';
+import ExerciseInfo from './exercise-info';
 
-export default class ExerciseAccordion extends React.Component {
+export default class MuscleList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { exercises: [], currentExerciseID: null, savedIds: {} };
-    this.decipherExerciseID = this.decipherExerciseID.bind(this);
-    this.saveExercise = this.saveExercise.bind(this);
+    this.state = { savedExercises: [], currentExerciseID: null };
+    this.showExerciseInfo = this.showExerciseInfo.bind(this);
   }
 
   componentDidMount() {
-    const muscleID = this.props.muscleID;
-    fetch(`/api/exercises-by-muscle/${muscleID}`)
+    const muscleName = this.props.musclename;
+    fetch(`/api/saved-exercises/${muscleName}`)
       .then(result => result.json())
-      .then(exercises => this.setState({ exercises }));
+      .then(savedExercises => this.setState({ savedExercises }));
   }
 
-  decipherExerciseID(event) {
+  showExerciseInfo(event) {
     const exerciseID = parseInt(event.target.getAttribute('exerciseid'));
     if (exerciseID === this.state.currentExerciseID) {
       this.setState({ currentExerciseID: null });
@@ -28,17 +27,16 @@ export default class ExerciseAccordion extends React.Component {
   render() {
     return (
       <>
-        {this.state.exercises.map(exercise => (
-          <div key={exercise.id}>
-            <a onClick={this.decipherExerciseID} exerciseid={exercise.id} key={exercise.id} className="exercise">
-              {exercise.name}
+        {this.state.savedExercises.map(exercise => (
+          <div key={exercise.exerciseId}>
+            <a key={exercise.exerciseId} className="exercise">
+              <div onClick={this.showExerciseInfo} exerciseid={exercise.exerciseId}>{exercise.exerciseName}</div>
             </a>
-            { this.state.currentExerciseID === exercise.id ? <ExerciseInfoAccordion exerciseid={exercise.id} /> : ''}
+            { this.state.currentExerciseID === exercise.exerciseId ? <ExerciseInfo exerciseid={exercise.exerciseId} /> : ''}
           </div>
         ))
         }
       </>
     );
   }
-
 }
