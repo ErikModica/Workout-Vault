@@ -67,6 +67,7 @@ app.get('/api/saved-exercises', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+
 app.get('/api/saved-exercises/muscles', (req, res, next) => {
   const sql = `
               select distinct "muscleName"
@@ -91,6 +92,12 @@ app.get('/api/saved-exercises/:muscleName', (req, res, next) => {
       res.status(200).json(result.rows);
     })
     .catch(err => console.error(err));
+
+app.use((req, res) => {
+  res.sendFile('/index.html', {
+    root: path.join(__dirname, 'public')
+  });
+
 });
 
 app.use((req, res) => {
