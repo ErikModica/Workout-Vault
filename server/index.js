@@ -90,7 +90,6 @@ app.get('/api/saved-exercises/:muscleName', (req, res, next) => {
               `;
   db.query(sql, [req.params.muscleName])
     .then(result => {
-      // const formattedMuscleList = result.rows.map(muscleNameObj => muscleNameObj.muscleName);
       res.status(200).json(result.rows);
     })
     .catch(err => console.error(err));
