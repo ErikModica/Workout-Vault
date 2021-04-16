@@ -39,6 +39,7 @@ a {
 
 .app-drawer {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .tile-container {
@@ -69,6 +70,10 @@ a {
 .app-tile > .tile-title {
   text-align: center;
   width: 100%;
+}
+
+.tile-title > h2 {
+  margin-bottom: 0;
 }
 
 .app-tile > .icon {
