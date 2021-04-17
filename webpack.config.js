@@ -18,7 +18,7 @@ module.exports = {
         test: /\.jsx?$/,
         include: clientPath,
         use: {
-          loader: 'babel-loader',
+          loader: ['babel-loader', 'style-loader', 'css-loader'],
           options: {
             plugins: [
               '@babel/plugin-transform-react-jsx'

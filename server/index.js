@@ -137,6 +137,20 @@ function getExercisesByMuscle(muscleID) {
     });
 }
 
+function getExercisesByMultipleMuscle(muscleIDArray) {
+  const newArr = [2, 4, 5, 6];
+  return nodeFetch(`https://wger.de/api/v2/exercise/?muscles=${newArr}&language=2`)
+    .then(res => res.json())
+    .then(data => {
+      return data.results
+        .filter(exercise => exercise.description.length > 5)
+        .map(exercise => {
+          const formatedExercises = { id: exercise.id, name: exercise.name };
+          return formatedExercises;
+        });
+    });
+}
+
 function getExerciseByID(exerciseID) {
   return nodeFetch(`https://wger.de/api/v2/exerciseinfo/${exerciseID}/`)
     .then(res => res.json())
