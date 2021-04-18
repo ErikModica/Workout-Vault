@@ -225,6 +225,30 @@ a {
   max-width: fit-content;
 }
 
+.exercise-container > h2 {
+  margin: 0;
+}
+
+.exercise-selections-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(186, 232, 232);
+  padding: 0.5rem;
+}
+
+.exercise-choice-select > h4,
+.muscle-choice-select > h4 {
+  margin: 0;
+}
+
+.exercise-choice-select {
+  flex-basis: 45%;
+}
+
+.muscle-choice-select {
+  flex-basis: 45%;
+}
+
 @media only screen and (max-width: 576px) {
   .muscle-list-desktop {
     display: none;

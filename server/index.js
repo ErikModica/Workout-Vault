@@ -99,12 +99,6 @@ app.use((req, res) => {
   });
 });
 
-app.use((req, res) => {
-  res.sendFile('/index.html', {
-    root: path.join(__dirname, 'public')
-  });
-});
-
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
@@ -126,20 +120,6 @@ function getMuscles() {
 
 function getExercisesByMuscle(muscleID) {
   return nodeFetch(`https://wger.de/api/v2/exercise/?muscles=${muscleID}&language=2`)
-    .then(res => res.json())
-    .then(data => {
-      return data.results
-        .filter(exercise => exercise.description.length > 5)
-        .map(exercise => {
-          const formatedExercises = { id: exercise.id, name: exercise.name };
-          return formatedExercises;
-        });
-    });
-}
-
-function getExercisesByMultipleMuscle(muscleIDArray) {
-  const newArr = [2, 4, 5, 6];
-  return nodeFetch(`https://wger.de/api/v2/exercise/?muscles=${newArr}&language=2`)
     .then(res => res.json())
     .then(data => {
       return data.results

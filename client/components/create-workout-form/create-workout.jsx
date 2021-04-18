@@ -1,6 +1,6 @@
 import React from 'react';
 import { Multiselect } from 'multiselect-react-dropdown';
-// import '../../../server/public/styles.css';
+import ExerciseForm from './exercise-form';
 
 export default class CreateWorkout extends React.Component {
   constructor(props) {
@@ -9,14 +9,9 @@ export default class CreateWorkout extends React.Component {
       workoutName: '',
       muscleOptions: [],
       selectedMuscles: [],
-      exerciseCount: []
+      exerciseCount: [],
+      formSelections: { name: null, selecteMuscles: [], exerciseCount: null, exercises: [] }
     };
-
-    // this.style = {
-    //   multiselectContainer: {
-    //     border-radius: 10px
-    //   }
-    // };
 
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeMuscleGroup = this.handleChangeMuscleGroup.bind(this);
@@ -38,12 +33,7 @@ export default class CreateWorkout extends React.Component {
   }
 
   handleChangeMuscleGroup(selection) {
-    // const selectedMuscles = [...this.state.selectedMuscles];
-    const selectedMuscles = [];
-    selectedMuscles.push(selection);
-    this.setState({ selectedMuscles });
-    console.log(this.state.selectedMuscles);
-    fetch();
+    this.setState({ selectedMuscles: selection });
   }
 
   handleChangeExerciseCount(event) {
@@ -62,17 +52,14 @@ export default class CreateWorkout extends React.Component {
 
   renderExerciseCountSelection() {
     const numOfOptionsArr = [];
-    for (let i = 0; i <= 20; i++) {
+    for (let i = 1; i <= 20; i++) {
       numOfOptionsArr.push(
         <option key={`${i}`} value={`${i}`}>{i}</option>
       );
     }
+    numOfOptionsArr.unshift(<option key={'select'}>Select Count</option>);
     return numOfOptionsArr;
   }
-
-  // renderExerciseSelection() {
-  //   r
-  // }
 
   render() {
     return (
@@ -105,10 +92,7 @@ export default class CreateWorkout extends React.Component {
           <div className="created-exercise-container">
             {this.state.exerciseCount.map(num => {
               return (
-                <div key={num}>
-                  {`Exercise ${num}`}
-                  <select onChange={this.handleChangeExerciseCount} className="cw-form-item" name="exercise-count"></select>
-                </div>
+               <ExerciseForm key={num} selectedmuscles={this.state.selectedMuscles} exercisenum={num} formselections={this.state.formSelections} />
               );
             })}
           </div>
