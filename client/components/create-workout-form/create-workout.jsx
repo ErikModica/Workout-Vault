@@ -10,12 +10,14 @@ export default class CreateWorkout extends React.Component {
       muscleOptions: [],
       selectedMuscles: [],
       exerciseCount: [],
-      formSelections: { name: null, selecteMuscles: [], exerciseCount: null, exercises: [] }
+      formSelections: {},
+      createdExercises: []
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeMuscleGroup = this.handleChangeMuscleGroup.bind(this);
     this.handleChangeExerciseCount = this.handleChangeExerciseCount.bind(this);
+    this.handleChangeExerciseChoices = this.handleChangeExerciseChoices.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -29,7 +31,6 @@ export default class CreateWorkout extends React.Component {
 
   handleChangeName(event) {
     this.setState({ workoutName: event.target.value });
-    console.log(event.target.value);
   }
 
   handleChangeMuscleGroup(selection) {
@@ -45,8 +46,22 @@ export default class CreateWorkout extends React.Component {
     this.setState({ exerciseCount: exerciseCountArr });
   }
 
+  handleChangeExerciseChoices(event) {
+    const createdExercisesCopy = [...this.state.createdExercises];
+    createdExercisesCopy.push(JSON.parse(event.target.value));
+    this.setState({ createdExercises: createdExercisesCopy });
+  }
+
   handleSubmit(event) {
-    // console.log(this.state.value);
+    const { workoutName, selectedMuscles, exerciseCount, createdExercises } = this.state;
+    const formSelections = {
+      name: workoutName,
+      selectedMuscles,
+      exerciseCount,
+      createdExercises
+    };
+    this.setState({ formSelections });
+    console.log(formSelections);
     event.preventDefault();
   }
 
@@ -92,10 +107,11 @@ export default class CreateWorkout extends React.Component {
           <div className="created-exercise-container">
             {this.state.exerciseCount.map(num => {
               return (
-               <ExerciseForm key={num} selectedmuscles={this.state.selectedMuscles} exercisenum={num} formselections={this.state.formSelections} />
+               <ExerciseForm exercisechoices={this.handleChangeExerciseChoices} key={num} selectedmuscles={this.state.selectedMuscles} exercisenum={num} formselections={this.state.formSelections} />
               );
             })}
           </div>
+          <input type="submit" value="Submit" />
        </form>
       </div>
     );

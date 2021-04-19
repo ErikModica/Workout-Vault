@@ -1,5 +1,5 @@
+import fetch from 'node-fetch';
 import React from 'react';
-import ExerciseList from './exercise-list';
 
 export default class ExerciseForm extends React.Component {
 
@@ -7,33 +7,41 @@ export default class ExerciseForm extends React.Component {
     super(props);
 
     this.state = {
-      currentExerciseMuscleChoice: {},
+      currentExerciseMuscleNum: null,
       currentExerciseOptions: [],
       formSelections: this.props.formselections
     };
 
     this.handleChangeExerciseChoiceForExercise = this.handleChangeExerciseChoiceForExercise.bind(this);
-    this.handleChangeSaveExerciseChoice = this.handleChangeSaveExerciseChoice.bind(this);
   }
 
   handleChangeExerciseChoiceForExercise(event) {
+    const muscleObj = JSON.parse(event.target.value);
     const exerciseNum = parseInt(event.target.getAttribute('exercisenum'));
-    this.setState({ currentExerciseMuscleChoice: { exerciseNum, muscleId: event.target.value } });
-    // console.log(event.target.value);
-  }
-
-  handleChangeSaveExerciseChoice(event) {
-    console.log(event.target.getAttribute('exercisenum'));
-    console.log(event.target.value);
-    const exerciseChoice = event.target.value;
-    this.setState({ formSelections: {} });
+    this.setState({ currentExerciseMuscleNum: exerciseNum }); // insert this.state.currentMuscleId
+    this.fetchForCurrentExerciseOptions(muscleObj.id);
   }
 
   renderMuscleSelectionForExercises() {
     const formattedExercises = this.props.selectedmuscles.map(muscleObj => {
-      return <option key={muscleObj.id} value={muscleObj.id}>{muscleObj.name}</option>;
+      return <option key={muscleObj.id} value={JSON.stringify(muscleObj)}>{muscleObj.name}</option>;
     });
     formattedExercises.unshift(<option key={'select'}>Select Muscle</option>);
+    return formattedExercises;
+  }
+
+  fetchForCurrentExerciseOptions(muscleId) {
+    fetch(`/api/exercises-by-muscle/${muscleId}`)
+      .then(result => result.json())
+      .then(exercises => this.setState({ currentExerciseOptions: exercises }));
+  }
+
+  renderExerciseSelectionForMuscleChoice(exerciseIDArray) {
+    const formattedExercises = exerciseIDArray.map(exercise => {
+      exercise.exerciseNum = this.props.exercisenum;
+      return <option key={exercise.id} value={JSON.stringify(exercise)}>{exercise.name}</option>;
+    });
+    formattedExercises.unshift(<option key={'select'}>Select Exercise</option>);
     return formattedExercises;
   }
 
@@ -51,8 +59,10 @@ export default class ExerciseForm extends React.Component {
           </div>
           <div className="exercise-choice-select">
             <h4>{'Exercise'}</h4>
-            <select onChange={this.handleChangeSaveExerciseChoice} className="cw-form-item" name="exercise-select-for-exercise">
-              {this.state.currentExerciseMuscleChoice.exerciseNum === num ? <ExerciseList muscleid={this.state.currentExerciseMuscleChoice.muscleId} exercisenum={num} /> : ''}
+            <select onChange={this.props.exercisechoices} className="cw-form-item" name="exercise-select-for-exercise">
+              {this.state.currentExerciseMuscleNum === num
+                ? this.renderExerciseSelectionForMuscleChoice(this.state.currentExerciseOptions)
+                : <option>Select a Muscle First</option>}
             </select>
           </div>
         </div>

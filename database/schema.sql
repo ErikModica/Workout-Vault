@@ -23,3 +23,14 @@ create table "public"."saved-exercises" (
   "muscleName"     text           not null,
   primary key ("exerciseId")
 );
+
+create table "public"."user-workouts" (
+  "workoutId"      serial
+  "userId"         int            not null,
+  "workoutName"    int            not null,
+  "exerciseCount"  int            not null,
+  "createdAt"      timestamptz(6) not null default now(),
+
+  primary key ("workoutId");
+  foreign key ("workoutId")
+);
