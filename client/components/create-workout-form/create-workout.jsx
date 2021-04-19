@@ -55,13 +55,19 @@ export default class CreateWorkout extends React.Component {
   handleSubmit(event) {
     const { workoutName, selectedMuscles, exerciseCount, createdExercises } = this.state;
     const formSelections = {
-      name: workoutName,
+      userId: 1,
+      workoutName,
       selectedMuscles,
-      exerciseCount,
+      exerciseCount: exerciseCount.length,
       createdExercises
     };
-    this.setState({ formSelections });
-    console.log(formSelections);
+    // this.setState({ formSelections });
+    fetch('/api/user-workouts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formSelections) })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => console.error(err));
     event.preventDefault();
   }
 

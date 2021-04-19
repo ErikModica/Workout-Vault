@@ -25,12 +25,10 @@ create table "public"."saved-exercises" (
 );
 
 create table "public"."user-workouts" (
-  "workoutId"      serial
+  "workoutId"      serial,
   "userId"         int            not null,
-  "workoutName"    int            not null,
+  "workoutName"    text           not null,
   "exerciseCount"  int            not null,
   "createdAt"      timestamptz(6) not null default now(),
-
-  primary key ("workoutId");
-  foreign key ("workoutId")
+  primary key ("workoutId")
 );

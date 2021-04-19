@@ -93,6 +93,25 @@ app.get('/api/saved-exercises/:muscleName', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+app.post('/api/user-workouts', (req, res, next) => {
+  const { userId, workoutName, exerciseCount } = req.body;
+  if (!userId || !workoutName || !exerciseCount) {
+    throw new ClientError(400, 'enter all required fields');
+  }
+  const sql = `
+              insert into "user-workouts" ("userId", "workoutName", "exerciseCount")
+              values ($1, $2, $3)
+              returning *
+              `;
+  const values = [userId, workoutName, exerciseCount];
+
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json(result.rows[0]);
+    })
+    .catch(err => console.error(err));
+});
+
 app.use((req, res) => {
   res.sendFile('/index.html', {
     root: path.join(__dirname, 'public')
