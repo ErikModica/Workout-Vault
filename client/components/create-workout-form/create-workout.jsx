@@ -14,6 +14,36 @@ export default class CreateWorkout extends React.Component {
       createdExercises: []
     };
 
+    this.style = {
+      multiselectContainer: {
+        width: '100%'
+
+      },
+      searchBox: {
+        padding: '0 0 0 0.5rem',
+        width: '100%',
+        borderRadius: '20px',
+        backgroundColor: 'rgb(236, 236, 236)',
+        userSelect: 'none',
+        border: 'solid black 1px',
+        marginTop: '4px'
+      },
+      inputField: {
+        placeholder: 'yoyoi',
+        padding: '0'
+      },
+      // chips: {
+      //   display: 'none'
+      // }
+      option: {
+        fontSize: '0.7em',
+        padding: '0.3rem'
+      },
+      groupHeading: { // To chanage group heading style
+        display: 'none'
+      }
+    };
+
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeMuscleGroup = this.handleChangeMuscleGroup.bind(this);
     this.handleChangeExerciseCount = this.handleChangeExerciseCount.bind(this);
@@ -59,8 +89,9 @@ export default class CreateWorkout extends React.Component {
       workoutName,
       selectedMuscles,
       exerciseCount: exerciseCount.length,
-      createdExercises
+      exerciseInfo: JSON.stringify(createdExercises)
     };
+    console.log(createdExercises);
     // this.setState({ formSelections });
     fetch('/api/user-workouts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formSelections) })
       .then(res => res.json())
@@ -87,15 +118,16 @@ export default class CreateWorkout extends React.Component {
       <div className="form-container">
         <form onSubmit={this.handleSubmit}>
           <div>
-            Name Workout
+            <div>Name Workout</div>
             <input className="name-workout-input cw-form-item" onChange={this.handleChangeName}></input>
           </div>
           <div className="section-line"></div>
           <div className="muscle-exercise-select-container">
             <div className="mes-select">
-              Muscle(s)
+              <div>Muscle(s)</div>
               <Multiselect
                 options={this.state.muscleOptions} // Options to display in the dropdown
+                style={this.style}
                 // selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
                 onSelect={this.handleChangeMuscleGroup} // Function will trigger on select event
                 onRemove={this.onRemove} // Function will trigger on remove event
@@ -103,8 +135,8 @@ export default class CreateWorkout extends React.Component {
               />
             </div>
             <div className="mes-select">
-              Exercise Count
-              <select onChange={this.handleChangeExerciseCount} className="cw-form-item" name="exercise-count">
+              <div>Exercise Count</div>
+              <select onChange={this.handleChangeExerciseCount} className="exercise-count-select cw-form-item" name="exercise-count">
                 {this.renderExerciseCountSelection()}
               </select>
             </div>

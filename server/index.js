@@ -94,16 +94,16 @@ app.get('/api/saved-exercises/:muscleName', (req, res, next) => {
 });
 
 app.post('/api/user-workouts', (req, res, next) => {
-  const { userId, workoutName, exerciseCount } = req.body;
-  if (!userId || !workoutName || !exerciseCount) {
+  const { userId, workoutName, exerciseCount, exerciseInfo } = req.body;
+  if (!userId || !workoutName || !exerciseCount || !exerciseInfo) {
     throw new ClientError(400, 'enter all required fields');
   }
   const sql = `
-              insert into "user-workouts" ("userId", "workoutName", "exerciseCount")
-              values ($1, $2, $3)
+              insert into "user-workouts" ("userId", "workoutName", "exerciseCount", "exerciseInfo")
+              values ($1, $2, $3, $4)
               returning *
               `;
-  const values = [userId, workoutName, exerciseCount];
+  const values = [userId, workoutName, exerciseCount, exerciseInfo];
 
   db.query(sql, values)
     .then(result => {

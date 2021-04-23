@@ -29,6 +29,7 @@ create table "public"."user-workouts" (
   "userId"         int            not null,
   "workoutName"    text           not null,
   "exerciseCount"  int            not null,
+  "exerciseInfo"   json           not null,
   "createdAt"      timestamptz(6) not null default now(),
   primary key ("workoutId")
 );
