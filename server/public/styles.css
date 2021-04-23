@@ -203,21 +203,13 @@ select {
   width: 100%;
 }
 
-/* .exercise-count-select {
-  width: 100%;
-} */
-
-.muscles-select-container {
+.exercise-count-select {
   width: 50%;
-}
-
-.exercise-count-select-container {
-  width: 30%;
 }
 
 .muscle-exercise-select-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-basis: 100%;
 }
 
