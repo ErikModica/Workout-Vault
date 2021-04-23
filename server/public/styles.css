@@ -16,7 +16,13 @@ a {
 
 input,
 select {
+  font-size: 0.8em;
   font-family: 'Oswald', sans-serif;
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
 }
 
 /* HEADER */
@@ -199,22 +205,8 @@ select {
   padding: 1rem;
 }
 
-.name-workout-input {
-  width: 100%;
-}
-
-.exercise-count-select {
-  width: 50%;
-}
-
-.muscle-exercise-select-container {
-  display: flex;
-  justify-content: center;
-  flex-basis: 100%;
-}
-
 .cw-form-item {
-  /* width: 100%; */
+  width: 100%;
   padding: 0.5rem;
   border-radius: 20px;
   background-color: rgb(236, 236, 236);
@@ -229,8 +221,15 @@ select {
   margin-bottom: 1rem;
 }
 
-.search-wrapper {
-  max-width: fit-content;
+.muscle-exercise-select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+}
+
+.mes-select {
+  width: 100%;
 }
 
 .exercise-container > h2 {
@@ -241,7 +240,7 @@ select {
   display: flex;
   justify-content: space-between;
   background-color: rgb(186, 232, 232);
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 .exercise-choice-select > h4,
@@ -250,11 +249,11 @@ select {
 }
 
 .exercise-choice-select {
-  flex-basis: 45%;
+  flex-basis: 44%;
 }
 
 .muscle-choice-select {
-  flex-basis: 45%;
+  flex-basis: 44%;
 }
 
 @media only screen and (max-width: 576px) {

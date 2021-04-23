@@ -18,7 +18,7 @@ export default class ExerciseForm extends React.Component {
   handleChangeExerciseChoiceForExercise(event) {
     const muscleObj = JSON.parse(event.target.value);
     const exerciseNum = parseInt(event.target.getAttribute('exercisenum'));
-    this.setState({ currentExerciseMuscleNum: exerciseNum }); // insert this.state.currentMuscleId
+    this.setState({ currentExerciseMuscleNum: exerciseNum });
     this.fetchForCurrentExerciseOptions(muscleObj.id);
   }
 
