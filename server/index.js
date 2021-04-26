@@ -112,6 +112,18 @@ app.post('/api/user-workouts', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+app.get('/api/user-workouts', (req, res, next) => {
+  const sql = `
+              select "workoutId", "workoutName", "exerciseInfo"
+              from "user-workouts"
+              `;
+  db.query(sql)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => console.error(err));
+});
+
 app.use((req, res) => {
   res.sendFile('/index.html', {
     root: path.join(__dirname, 'public')
