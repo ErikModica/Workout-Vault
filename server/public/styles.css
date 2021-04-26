@@ -264,6 +264,10 @@ form {
   .saved-exercise-list-desktop {
     display: none;
   }
+
+  .user-workouts-desktop {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 576px) {
@@ -272,6 +276,10 @@ form {
   }
 
   .saved-exercise-list-mobile {
+    display: none;
+  }
+
+  .user-workouts-mobile {
     display: none;
   }
 }
