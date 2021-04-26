@@ -5,6 +5,7 @@ import Exercises from './pages/exercises';
 import SavedExercises from './pages/saved-exercises';
 import CreateWorkout from './pages/create-workout';
 import UserWorkouts from './pages/user-workouts';
+import UserWorkoutDetails from './pages/user-workout-details';
 import parseRoute from './lib/parse-route';
 
 export default class App extends React.Component {
@@ -33,6 +34,8 @@ export default class App extends React.Component {
       return <CreateWorkout />;
     } else if (route.path === 'my-workouts') {
       return <UserWorkouts />;
+    } else if (route.path === 'user-workout') {
+      return <UserWorkoutDetails />;
     }
     return <Home />;
   }

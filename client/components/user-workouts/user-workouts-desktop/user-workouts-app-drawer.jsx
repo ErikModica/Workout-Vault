@@ -19,7 +19,7 @@ export default class UserWorkoutsAppDrawer extends React.Component {
     return (
       <div className="app-drawer user-workouts-desktop">
         {this.state.userWorkouts.map(workout => (
-            <a className='tile-container' key={workout.workoutId}>
+            <a href="#user-workout" className='tile-container' info={workout} key={workout.workoutId}>
               <div className='bg-app-tile'></div>
               <div className="app-tile">
                 <div className="tile-title">

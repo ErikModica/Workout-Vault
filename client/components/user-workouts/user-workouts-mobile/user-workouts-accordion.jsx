@@ -21,7 +21,7 @@ export default class UserWorkoutsAccordion extends React.Component {
       <div className="workout-list-container-mobile">
         {this.state.userWorkouts.map(workout => (
           <div key={workout.workoutId} className="workout-list-item">
-            <a workoutid={workout.workoutId}>{workout.workoutName}</a>
+            <a href="#user-workout" workoutid={workout.workoutId}>{workout.workoutName}</a>
           </div>
         ))
         }
