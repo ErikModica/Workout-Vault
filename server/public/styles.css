@@ -256,6 +256,31 @@ form {
   flex-basis: 44%;
 }
 
+/* USER WORKOUT LIST */
+
+/* MOBILE */
+
+.workout-list-container-mobile {
+  font-size: 2.5em;
+  margin: 1rem;
+}
+
+.workout-list-item {
+  background-color: rgb(236, 236, 236);
+  margin: 1rem 0;
+  box-shadow: 2px 4px 6px rgb(39, 35, 67);
+}
+
+.workout-list-item > a {
+  padding-left: 1rem;
+}
+
+/* DESKTOP */
+
+.user-workouts-desktop {
+  font-size: 2.5em;
+}
+
 @media only screen and (max-width: 576px) {
   .muscle-list-desktop {
     display: none;
@@ -279,7 +304,7 @@ form {
     display: none;
   }
 
-  .user-workouts-mobile {
+  .workout-list-container-mobile {
     display: none;
   }
 }
