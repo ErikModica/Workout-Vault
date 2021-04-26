@@ -1,6 +1,6 @@
 import React from 'react';
-import MuscleAccordion from '../components/exercises-mobile/muscle-accordion';
-import MuscleAccordionDesktop from '../components/exercises-desktop/muscle-accordion-desktop';
+import MuscleAccordion from '../components/browse-exercises/exercises-mobile/muscle-accordion';
+import MuscleAccordionDesktop from '../components/browse-exercises/exercises-desktop/muscle-accordion-desktop';
 
 export default function Exercises(props) {
   return (
