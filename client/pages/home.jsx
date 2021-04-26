@@ -23,7 +23,18 @@ export default function Home(props) {
                 <h2>SAVED EXERCISES</h2>
               </div>
               <div className="icon">
-                <i className="fas fa-search"></i>
+                <i className="fas fa-bookmark"></i>
+              </div>
+            </div>
+          </a>
+          <a href="#create-workout" className="tile-container">
+            <div className="bg-app-tile"></div>
+            <div className="app-tile">
+              <div className="tile-title">
+                <h2>CREATE WORKOUT</h2>
+              </div>
+              <div className="icon">
+                <i className="fas fa-clipboard-list"></i>
               </div>
             </div>
           </a>

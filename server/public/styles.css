@@ -14,6 +14,17 @@ a {
   color: inherit;
 }
 
+input,
+select {
+  font-size: 0.8em;
+  font-family: 'Oswald', sans-serif;
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
+}
+
 /* HEADER */
 
 .navbar {
@@ -39,6 +50,7 @@ a {
 
 .app-drawer {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .tile-container {
@@ -69,6 +81,10 @@ a {
 .app-tile > .tile-title {
   text-align: center;
   width: 100%;
+}
+
+.tile-title > h2 {
+  margin-bottom: 0;
 }
 
 .app-tile > .icon {
@@ -177,6 +193,67 @@ a {
 
 .exercise-info-group-desktop > .exercise-steps {
   width: 90%;
+}
+
+/* CREATE WORKOUT FORM */
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+  font-size: 2em;
+  padding: 1rem;
+}
+
+.cw-form-item {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 20px;
+  background-color: rgb(236, 236, 236);
+  user-select: none;
+}
+
+.section-line {
+  height: 2px;
+  width: 100%;
+  background-color: black;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.muscle-exercise-select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+}
+
+.mes-select {
+  width: 100%;
+}
+
+.exercise-container > h2 {
+  margin: 0;
+}
+
+.exercise-selections-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(186, 232, 232);
+  padding: 1rem;
+}
+
+.exercise-choice-select > h4,
+.muscle-choice-select > h4 {
+  margin: 0;
+}
+
+.exercise-choice-select {
+  flex-basis: 44%;
+}
+
+.muscle-choice-select {
+  flex-basis: 44%;
 }
 
 @media only screen and (max-width: 576px) {

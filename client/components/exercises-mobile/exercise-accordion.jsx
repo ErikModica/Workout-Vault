@@ -50,7 +50,7 @@ export default class ExerciseAccordion extends React.Component {
       <>
         {this.state.exercises.map(exercise => (
           <div key={exercise.id}>
-            <a key={exercise.id} className="exercise">
+            <a className="exercise">
               <div onClick={this.decipherExerciseID} exerciseid={exercise.id}>{exercise.name}</div>
               <i exerciseid={exercise.id} exercisename={exercise.name} onClick={this.saveExercise}
                 className={!this.state.savedIds.some(exerciseInfoObj => exerciseInfoObj.exerciseId === exercise.id) ? 'far fa-bookmark unsaved-icon' : 'fas fa-bookmark unsaved-icon'}>
