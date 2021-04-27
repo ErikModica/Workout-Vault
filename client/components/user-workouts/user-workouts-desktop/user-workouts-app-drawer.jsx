@@ -1,10 +1,12 @@
 import React from 'react';
+import UserWorkout from '../../user-workout-details/user-workout';
 
 export default class UserWorkoutsAppDrawer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { userWorkouts: [] };
+    this.state = { userWorkouts: [], activated: false, workoutInfo: {} };
+    this.openWorkout = this.openWorkout.bind(this);
   }
 
   componentDidMount() {
@@ -15,21 +17,30 @@ export default class UserWorkoutsAppDrawer extends React.Component {
       });
   }
 
+  openWorkout() {
+    const workoutInfo = JSON.parse(event.target.getAttribute('info'));
+    this.setState({ activated: true, workoutInfo });
+  }
+
   render() {
     return (
-      <div className="app-drawer user-workouts-desktop">
+      <>
+      {!this.state.activated
+        ? <div className="app-drawer user-workouts-desktop">
         {this.state.userWorkouts.map(workout => (
-            <a href="#user-workout" className='tile-container' info={workout} key={workout.workoutId}>
+            <a className='tile-container' key={workout.workoutId}>
               <div className='bg-app-tile'></div>
               <div className="app-tile">
                 <div className="tile-title">
-                  <h5 exerciseid={workout.workoutId}>{workout.workoutName}</h5>
+                <h5 onClick={this.openWorkout} info={JSON.stringify(workout)} exerciseid={workout.workoutId}>{workout.workoutName}</h5>
                 </div>
               </div>
             </a>
         ))
         }
       </div>
+        : <UserWorkout info={this.state.workoutInfo}></UserWorkout>}
+    </>
     );
   }
 }

@@ -5,7 +5,8 @@ export default class UserWorkoutsAccordion extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { userWorkouts: [] };
+    this.state = { userWorkouts: [], activated: false, workoutInfo: {} };
+    this.openWorkout = this.openWorkout.bind(this);
   }
 
   componentDidMount() {
@@ -16,9 +17,16 @@ export default class UserWorkoutsAccordion extends React.Component {
       });
   }
 
+  openWorkout() {
+    const workoutInfo = JSON.parse(event.target.getAttribute('info'));
+    this.setState({ activated: true, workoutInfo });
+  }
+
   render() {
     return (
-      <div className="workout-list-container-mobile">
+      <>
+      {!this.state.activated
+        ? <div className="workout-list-container-mobile">
         {this.state.userWorkouts.map(workout => (
           <div key={workout.workoutId} className="workout-list-item">
             <a href="#user-workout" workoutid={workout.workoutId}>{workout.workoutName}</a>
@@ -26,6 +34,8 @@ export default class UserWorkoutsAccordion extends React.Component {
         ))
         }
       </div>
+        : <UserWorkout info={this.state.workoutInfo}></UserWorkout>}
+      </>
     );
   }
 }
