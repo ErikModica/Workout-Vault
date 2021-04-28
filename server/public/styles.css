@@ -239,7 +239,7 @@ form {
 .exercise-selections-container {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(186, 232, 232);
+  background-color: rgb(227, 246, 245);
   padding: 1rem;
 }
 
@@ -279,6 +279,46 @@ form {
 
 .user-workouts-desktop {
   font-size: 2.5em;
+}
+
+/* USER WORKOUT */
+
+.user-workout-container {
+  margin: auto;
+  font-size: 2em;
+  padding: 1rem;
+  max-width: 900px;
+}
+
+.user-workout-title {
+  text-align: center;
+  font-size: 3em;
+  padding: 0.5rem;
+  background-color: rgb(236, 236, 236);
+}
+
+.exercise-item {
+  padding: 0.5rem;
+}
+
+.exercise-item-title {
+  font-size: 1.5em;
+}
+
+.exercise-item-details {
+  display: flex;
+  text-align: center;
+  background-color: rgb(227, 246, 245);
+  padding: 0.5rem;
+}
+
+.exercise-item-subtitle {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.exercise-item-exercise-group {
+  width: 100%;
 }
 
 @media only screen and (max-width: 576px) {

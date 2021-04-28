@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import React from 'react';
+import UserWorkout from '../../user-workout-details/user-workout';
 
 export default class UserWorkoutsAccordion extends React.Component {
 
@@ -29,7 +30,7 @@ export default class UserWorkoutsAccordion extends React.Component {
         ? <div className="workout-list-container-mobile">
         {this.state.userWorkouts.map(workout => (
           <div key={workout.workoutId} className="workout-list-item">
-            <a href="#user-workout" workoutid={workout.workoutId}>{workout.workoutName}</a>
+            <a onClick={this.openWorkout} info={JSON.stringify(workout)} workoutid={workout.workoutId}>{workout.workoutName}</a>
           </div>
         ))
         }
