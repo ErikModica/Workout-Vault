@@ -42,7 +42,6 @@ export default class ExerciseAccordion extends React.Component {
         .then(res => res.json())
         .then(() => this.checkSavedIcons())
         .catch(err => console.error(err));
-
     }
 
   }
