@@ -1,4 +1,3 @@
-// import { json } from 'express';
 import React from 'react';
 import ExerciseInfoAccordion from './exercise-info-accordion-desktop';
 
