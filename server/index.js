@@ -55,6 +55,23 @@ app.post('/api/saved-exercises', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+app.delete('/api/saved-exercises', (req, res, next) => {
+  const exerciseId = req.body.exerciseId;
+  if (!exerciseId) {
+    throw new ClientError(400, 'enter all required fields');
+  }
+  const sql = `
+              delete from "saved-exercises"
+              where "exerciseId" = $1
+              `;
+  const values = [exerciseId];
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => console.error(err));
+});
+
 app.get('/api/saved-exercises', (req, res, next) => {
   const sql = `
               select "exerciseId", "exerciseName", "muscleId", "muscleName"

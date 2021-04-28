@@ -27,13 +27,24 @@ export default class ExerciseAccordion extends React.Component {
   }
 
   saveExercise(event) {
+    const currentSavedStatus = event.target.getAttribute('class');
     const exerciseId = parseInt(event.target.getAttribute('exerciseid'));
-    const exerciseName = event.target.getAttribute('exercisename');
-    const body = { userId: 1, exerciseId, exerciseName, muscleId: this.props.muscleID, muscleName: this.props.muscleName };
-    fetch('/api/saved-exercises', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-      .then(res => res.json())
-      .then(() => this.checkSavedIcons())
-      .catch(err => console.error(err));
+    if (currentSavedStatus[2] === 'r') {
+      const exerciseName = event.target.getAttribute('exercisename');
+      const body = { userId: 1, exerciseId, exerciseName, muscleId: this.props.muscleID, muscleName: this.props.muscleName };
+      fetch('/api/saved-exercises', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(res => res.json())
+        .then(() => this.checkSavedIcons())
+        .catch(err => console.error(err));
+    } else {
+      const body = { exerciseId };
+      fetch('/api/saved-exercises', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(res => res.json())
+        .then(() => this.checkSavedIcons())
+        .catch(err => console.error(err));
+
+    }
+
   }
 
   checkSavedIcons() {
