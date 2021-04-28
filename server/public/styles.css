@@ -195,6 +195,59 @@ form {
   width: 90%;
 }
 
+/* EXERCISE MODAL */
+
+.exercise-modal-bg {
+  position: absolute;
+  background-color: rgba(1, 1, 1, 0.7);
+  height: 91.8vh;
+  width: 100%;
+  padding-top: 10%;
+}
+
+.exit-icon {
+  position: absolute;
+  font-size: 2em;
+  transition: font-size 0.2s;
+}
+
+.exit-icon:hover {
+  cursor: pointer;
+  font-size: 2.3em;
+}
+
+.exercise-modal-container {
+  background-color: rgb(236, 236, 236);
+  width: 80%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.exercise-modal-title {
+  text-align: center;
+  font-size: 3.5em;
+  padding-top: 0.8rem;
+}
+
+.exercise-modal-images-container {
+  display: flex;
+  justify-content: center;
+}
+
+.exercise-modal-images {
+  width: 50%;
+  max-width: 200px;
+  padding: 1rem;
+}
+
+.exercise-modal-steps > div {
+  font-size: 2.5em;
+}
+
+.exercise-modal-steps > p {
+  font-size: 1.6em;
+}
+
 /* CREATE WORKOUT FORM */
 
 .form-container {
@@ -299,6 +352,12 @@ form {
 
 .exercise-item {
   padding: 0.5rem;
+}
+
+.exercise-heading-group {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .exercise-item-title {

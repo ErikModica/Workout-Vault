@@ -39,7 +39,7 @@ export default class UserWorkoutsAppDrawer extends React.Component {
         ))
         }
       </div>
-        : <UserWorkout info={this.state.workoutInfo}></UserWorkout>}
+        : <UserWorkout info={this.state.workoutInfo} />}
     </>
     );
   }
