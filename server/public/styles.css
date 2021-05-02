@@ -195,6 +195,59 @@ form {
   width: 90%;
 }
 
+/* EXERCISE MODAL */
+
+.exercise-modal-bg {
+  position: absolute;
+  background-color: rgba(1, 1, 1, 0.7);
+  height: 91.8vh;
+  width: 100%;
+  padding-top: 10%;
+}
+
+.exit-icon {
+  position: absolute;
+  font-size: 2em;
+  transition: font-size 0.2s;
+}
+
+.exit-icon:hover {
+  cursor: pointer;
+  font-size: 2.3em;
+}
+
+.exercise-modal-container {
+  background-color: rgb(236, 236, 236);
+  width: 80%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.exercise-modal-title {
+  text-align: center;
+  font-size: 3.5em;
+  padding-top: 0.8rem;
+}
+
+.exercise-modal-images-container {
+  display: flex;
+  justify-content: center;
+}
+
+.exercise-modal-images {
+  width: 50%;
+  max-width: 200px;
+  padding: 1rem;
+}
+
+.exercise-modal-steps > div {
+  font-size: 2.5em;
+}
+
+.exercise-modal-steps > p {
+  font-size: 1.6em;
+}
+
 /* CREATE WORKOUT FORM */
 
 .form-container {
@@ -239,7 +292,7 @@ form {
 .exercise-selections-container {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(186, 232, 232);
+  background-color: rgb(227, 246, 245);
   padding: 1rem;
 }
 
@@ -256,12 +309,87 @@ form {
   flex-basis: 44%;
 }
 
+/* USER WORKOUT LIST */
+
+/* MOBILE */
+
+.workout-list-container-mobile {
+  font-size: 2.5em;
+  margin: 1rem;
+}
+
+.workout-list-item {
+  background-color: rgb(236, 236, 236);
+  margin: 1rem 0;
+  box-shadow: 2px 4px 6px rgb(39, 35, 67);
+}
+
+.workout-list-item > a {
+  padding-left: 1rem;
+}
+
+/* DESKTOP */
+
+.user-workouts-desktop {
+  font-size: 2.5em;
+}
+
+/* USER WORKOUT */
+
+.user-workout-container {
+  margin: auto;
+  font-size: 2em;
+  padding: 1rem;
+  max-width: 900px;
+}
+
+.user-workout-title {
+  text-align: center;
+  font-size: 3em;
+  padding: 0.5rem;
+  background-color: rgb(236, 236, 236);
+}
+
+.exercise-item {
+  padding: 0.5rem;
+}
+
+.exercise-heading-group {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.exercise-item-title {
+  font-size: 1.5em;
+}
+
+.exercise-item-details {
+  display: flex;
+  text-align: center;
+  background-color: rgb(227, 246, 245);
+  padding: 0.5rem;
+}
+
+.exercise-item-subtitle {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.exercise-item-exercise-group {
+  width: 100%;
+}
+
 @media only screen and (max-width: 576px) {
   .muscle-list-desktop {
     display: none;
   }
 
   .saved-exercise-list-desktop {
+    display: none;
+  }
+
+  .user-workouts-desktop {
     display: none;
   }
 }
@@ -272,6 +400,10 @@ form {
   }
 
   .saved-exercise-list-mobile {
+    display: none;
+  }
+
+  .workout-list-container-mobile {
     display: none;
   }
 }

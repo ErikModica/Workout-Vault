@@ -1,6 +1,6 @@
 import React from 'react';
-import SavedExercisesMobile from '../components/saved-exercises-mobile/muscle-list';
-import SavedExercisesDesktop from '../components/saved-exercises-desktop/muscle-list';
+import SavedExercisesMobile from '../components/saved-exercises/saved-exercises-mobile/muscle-list';
+import SavedExercisesDesktop from '../components/saved-exercises/saved-exercises-desktop/muscle-list';
 
 export default function SavedExercises(props) {
   return (
