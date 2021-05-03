@@ -49,16 +49,25 @@ export default class ExerciseForm extends React.Component {
     const num = this.props.exercisenum;
     return (
       <div className="exercise-container" key={num}>
-        <h2>{`Exercise ${num}`}</h2>
+        <div className="exercise-number-sets-container">
+          <div className="exercise-number-title">{`Exercise ${num}`}</div>
+          <div className="exercise-sets-select">
+            <h4 className="exercise-select-title">Sets</h4>
+            <select className="cw-form-item" name="sets-count-select">
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+        </div>
         <div className="exercise-selections-container">
           <div className="muscle-choice-select">
-            <h4>{'Muscle'}</h4>
+            <h4 className="exercise-select-title">{'Muscle'}</h4>
             <select onChange={this.handleChangeExerciseChoiceForExercise} exercisenum={num} className="cw-form-item" name="muscle-select-for-exercise">
               {this.renderMuscleSelectionForExercises()}
             </select>
           </div>
           <div className="exercise-choice-select">
-            <h4>{'Exercise'}</h4>
+            <h4 className="exercise-select-title">{'Exercise'}</h4>
             <select onChange={this.props.exercisechoices} className="cw-form-item" name="exercise-select-for-exercise">
               {this.state.currentExerciseMuscleNum === num
                 ? this.renderExerciseSelectionForMuscleChoice(this.state.currentExerciseOptions)
