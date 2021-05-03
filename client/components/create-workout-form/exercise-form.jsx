@@ -45,6 +45,15 @@ export default class ExerciseForm extends React.Component {
     return formattedExercises;
   }
 
+  renderSetsAmount() {
+    const formattedSets = [];
+    for (let i = 1; i <= 20; i++) {
+      formattedSets.push(<option value={i}>{i}</option>);
+    }
+    formattedSets.unshift(<option>...</option>);
+    return formattedSets;
+  }
+
   render() {
     const num = this.props.exercisenum;
     return (
@@ -54,8 +63,7 @@ export default class ExerciseForm extends React.Component {
           <div className="exercise-sets-select">
             <h4 className="exercise-select-title">Sets</h4>
             <select className="cw-form-item" name="sets-count-select">
-              <option value="1">1</option>
-              <option value="2">2</option>
+              {this.renderSetsAmount()}
             </select>
           </div>
         </div>
