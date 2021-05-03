@@ -319,10 +319,6 @@ form {
   width: 50%;
 }
 
-/* .exercise-sets-select > h4 {
-  display: inline-block;
-} */
-
 .exercise-select-title {
   margin: 0;
 }
@@ -333,6 +329,12 @@ form {
 
 .muscle-choice-select {
   flex-basis: 44%;
+}
+
+/* SET ITEM WORKOUT FORM */
+
+.set-item-container {
+  background-color: rgb(186, 232, 232);
 }
 
 /* USER WORKOUT LIST */

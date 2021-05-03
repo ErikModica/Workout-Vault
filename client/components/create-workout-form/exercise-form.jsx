@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import React from 'react';
+import SetItem from './set-item';
 
 export default class ExerciseForm extends React.Component {
 
@@ -7,12 +8,14 @@ export default class ExerciseForm extends React.Component {
     super(props);
 
     this.state = {
+      setCount: [],
       currentExerciseMuscleNum: null,
       currentExerciseOptions: [],
       formSelections: this.props.formselections
     };
 
     this.handleChangeExerciseChoiceForExercise = this.handleChangeExerciseChoiceForExercise.bind(this);
+    this.handleChangeSetsCount = this.handleChangeSetsCount.bind(this);
   }
 
   handleChangeExerciseChoiceForExercise(event) {
@@ -20,6 +23,15 @@ export default class ExerciseForm extends React.Component {
     const exerciseNum = parseInt(event.target.getAttribute('exercisenum'));
     this.setState({ currentExerciseMuscleNum: exerciseNum });
     this.fetchForCurrentExerciseOptions(muscleObj.id);
+  }
+
+  handleChangeSetsCount(event) {
+    const setCount = event.target.value;
+    const setCountArr = [];
+    for (let i = 1; i <= setCount; i++) {
+      setCountArr.push(i);
+    }
+    this.setState({ setCount: setCountArr });
   }
 
   renderMuscleSelectionForExercises() {
@@ -50,7 +62,7 @@ export default class ExerciseForm extends React.Component {
     for (let i = 1; i <= 20; i++) {
       formattedSets.push(<option value={i}>{i}</option>);
     }
-    formattedSets.unshift(<option>...</option>);
+    formattedSets.unshift(<option value={null}>...</option>);
     return formattedSets;
   }
 
@@ -62,7 +74,7 @@ export default class ExerciseForm extends React.Component {
           <div className="exercise-number-title">{`Exercise ${num}`}</div>
           <div className="exercise-sets-select">
             <h4 className="exercise-select-title">Sets</h4>
-            <select className="cw-form-item" name="sets-count-select">
+            <select onChange={this.handleChangeSetsCount} className="cw-form-item" name="sets-count-select">
               {this.renderSetsAmount()}
             </select>
           </div>
@@ -83,6 +95,9 @@ export default class ExerciseForm extends React.Component {
             </select>
           </div>
         </div>
+        {this.state.setCount.map(num => {
+          return <SetItem key={num}/>;
+        })}
       </div>
     );
   }
