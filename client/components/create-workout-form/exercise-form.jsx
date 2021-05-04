@@ -79,25 +79,27 @@ export default class ExerciseForm extends React.Component {
             </select>
           </div>
         </div>
-        <div className="exercise-selections-container">
-          <div className="muscle-choice-select">
-            <h4 className="exercise-select-title">{'Muscle'}</h4>
-            <select onChange={this.handleChangeExerciseChoiceForExercise} exercisenum={num} className="cw-form-item" name="muscle-select-for-exercise">
-              {this.renderMuscleSelectionForExercises()}
-            </select>
+        <div className="exercise-main-body-container">
+          <div className="exercise-selections-container">
+            <div className="muscle-choice-select">
+              <h4 className="exercise-select-title">{'Muscle'}</h4>
+              <select onChange={this.handleChangeExerciseChoiceForExercise} exercisenum={num} className="cw-form-item" name="muscle-select-for-exercise">
+                {this.renderMuscleSelectionForExercises()}
+              </select>
+            </div>
+            <div className="exercise-choice-select">
+              <h4 className="exercise-select-title">{'Exercise'}</h4>
+              <select onChange={this.props.exercisechoices} className="cw-form-item" name="exercise-select-for-exercise">
+                {this.state.currentExerciseMuscleNum === num
+                  ? this.renderExerciseSelectionForMuscleChoice(this.state.currentExerciseOptions)
+                  : <option>Select a Muscle First</option>}
+              </select>
+            </div>
           </div>
-          <div className="exercise-choice-select">
-            <h4 className="exercise-select-title">{'Exercise'}</h4>
-            <select onChange={this.props.exercisechoices} className="cw-form-item" name="exercise-select-for-exercise">
-              {this.state.currentExerciseMuscleNum === num
-                ? this.renderExerciseSelectionForMuscleChoice(this.state.currentExerciseOptions)
-                : <option>Select a Muscle First</option>}
-            </select>
-          </div>
+          {this.state.setCount.map(num => {
+            return <SetItem key={num} number={num} />;
+          })}
         </div>
-        {this.state.setCount.map(num => {
-          return <SetItem key={num}/>;
-        })}
       </div>
     );
   }
