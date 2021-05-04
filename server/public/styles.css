@@ -344,7 +344,7 @@ form {
   margin: 0.5rem;
 }
 
-.set-item-reps-weight-container {
+.set-item-reps-weight-number-container {
   padding: 0.5rem;
   display: flex;
   justify-content: space-around;
@@ -355,7 +355,7 @@ form {
   font-size: 1.2em;
 }
 
-.sirwc {
+.set-item-reps-weight-container {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
