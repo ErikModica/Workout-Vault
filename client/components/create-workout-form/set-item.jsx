@@ -4,7 +4,11 @@ export default class SetItem extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = ({ reps: null, weight: null, alternation: null, duration: null });
+    this.state = ({ reps: null, weight: null, alternation: null, duration: null, extraSettingsShown: false });
+  }
+
+  showExtraSettings() {
+    this.setState({ extraSettingsShown: true });
   }
 
   render() {
@@ -18,6 +22,9 @@ export default class SetItem extends React.Component {
             <label className="exercise-select-title">Weight</label>
             <input type="number" className="cw-form-item" max="1000" name="weight-select"></input>
         </div>
+        </div>
+        <div className="set-item-dropdown">
+          <i onClick={this.showExtraSettings} className="si-dropdown-icon fas fa-caret-down"></i>
         </div>
       </div>
     );

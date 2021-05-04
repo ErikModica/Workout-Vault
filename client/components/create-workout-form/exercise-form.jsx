@@ -60,9 +60,9 @@ export default class ExerciseForm extends React.Component {
   renderSetsAmount() {
     const formattedSets = [];
     for (let i = 1; i <= 20; i++) {
-      formattedSets.push(<option value={i}>{i}</option>);
+      formattedSets.push(<option key={i} value={i}>{i}</option>);
     }
-    formattedSets.unshift(<option value={null}>...</option>);
+    formattedSets.unshift(<option key="0" value={null}>...</option>);
     return formattedSets;
   }
 

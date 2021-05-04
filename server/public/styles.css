@@ -348,6 +348,7 @@ form {
   padding: 0.5rem;
   display: flex;
   justify-content: space-around;
+  flex-basis: 100%;
 }
 
 .set-title-num {
@@ -360,6 +361,25 @@ form {
   justify-content: space-around;
   align-items: baseline;
   width: 70%;
+}
+
+.set-item-reps-weight-container > input {
+  width: 70px;
+}
+
+.set-item-dropdown {
+  width: 100%;
+  text-align: center;
+}
+
+.si-dropdown-icon {
+  transition: font-size 0.2s;
+  padding: 0;
+}
+
+.si-dropdown-icon:hover {
+  font-size: 1.3em;
+  cursor: pointer;
 }
 
 /* USER WORKOUT LIST */
