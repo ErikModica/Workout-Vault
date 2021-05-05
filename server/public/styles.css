@@ -354,6 +354,7 @@ form {
 .set-title-num {
   width: 25%;
   font-size: 1.2em;
+  font-weight: bold;
 }
 
 .set-item-reps-weight-container {
