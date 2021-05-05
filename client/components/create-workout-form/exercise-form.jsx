@@ -10,8 +10,8 @@ export default class ExerciseForm extends React.Component {
     this.state = {
       setCount: [],
       currentExerciseMuscleNum: null,
-      currentExerciseOptions: [],
-      formSelections: this.props.formselections
+      currentExerciseOptions: []
+      // formSelections: this.props.formselections
     };
 
     this.handleChangeExerciseChoiceForExercise = this.handleChangeExerciseChoiceForExercise.bind(this);
@@ -62,7 +62,7 @@ export default class ExerciseForm extends React.Component {
     for (let i = 1; i <= 20; i++) {
       formattedSets.push(<option key={i} value={i}>{i}</option>);
     }
-    formattedSets.unshift(<option key="0" value={null}>...</option>);
+    formattedSets.unshift(<option key="0" value="">...</option>);
     return formattedSets;
   }
 
@@ -97,7 +97,7 @@ export default class ExerciseForm extends React.Component {
             </div>
           </div>
           {this.state.setCount.map(num => {
-            return <SetItem key={num} number={num} />;
+            return <SetItem exercisechoices={this.props.exercisechoices} key={num} number={num} />;
           })}
         </div>
       </div>
