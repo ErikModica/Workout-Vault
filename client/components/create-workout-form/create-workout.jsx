@@ -74,7 +74,21 @@ export default class CreateWorkout extends React.Component {
 
   handleChangeExerciseChoices(event) {
     const createdExercisesCopy = [...this.state.createdExercises];
-    createdExercisesCopy.push(JSON.parse(event.target.value));
+    const newExercise = JSON.parse(event.target.value);
+    const fieldName = event.target.name;
+    if (fieldName === 'exercise-select') {
+      if (createdExercisesCopy.length === 0) {
+        createdExercisesCopy.push(newExercise);
+      } else {
+        const editedExerciseIndex = createdExercisesCopy.findIndex(exercise => exercise.exerciseNum === newExercise.exerciseNum);
+        if (editedExerciseIndex !== -1) {
+          createdExercisesCopy.splice(editedExerciseIndex, 1, newExercise);
+        } else {
+          createdExercisesCopy.push(newExercise);
+        }
+      }
+    }
+
     this.setState({ createdExercises: createdExercisesCopy });
   }
 

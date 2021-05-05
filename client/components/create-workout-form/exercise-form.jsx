@@ -89,7 +89,7 @@ export default class ExerciseForm extends React.Component {
             </div>
             <div className="exercise-choice-select">
               <h4 className="exercise-select-title">{'Exercise'}</h4>
-              <select onChange={this.props.exercisechoices} className="cw-form-item" name="exercise-select-for-exercise">
+              <select onChange={this.props.exercisechoices} className="cw-form-item" name="exercise-select">
                 {this.state.currentExerciseMuscleNum === num
                   ? this.renderExerciseSelectionForMuscleChoice(this.state.currentExerciseOptions)
                   : <option>Select a Muscle First</option>}
