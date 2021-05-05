@@ -267,7 +267,7 @@ form {
 }
 
 .section-line {
-  height: 2px;
+  height: 1px;
   width: 100%;
   background-color: black;
   margin-top: 1rem;
@@ -380,6 +380,15 @@ form {
 .si-dropdown-icon:hover {
   font-size: 1.3em;
   cursor: pointer;
+}
+
+.set-item-extra-settings-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.set-item-extra-settings-input-group {
+  margin: 0;
 }
 
 /* USER WORKOUT LIST */
